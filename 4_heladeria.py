@@ -18,31 +18,45 @@ print(f"{'-'*28 }")
 Vanilla = 3500  
 Chocolate = 4000  
 Topping = 1000  
-price_total = 0
+total_price = 0
 
 
 
 while True:
-    flavor = input("\nPlease choose a flavor (Vanilla/Chocolate): ").strip().lower()    
+    choice_flavor = input("Select a flavor (chocolate/vanilla): ").strip().lower()
 
-    if flavor != "vanilla" and flavor != "chocolate":
-         flavor = input("Please choose a correct flavor (Vanilla/Chocolate): ").strip().lower()   
-           
-    elif flavor == "vanilla":
-        price_total += Vanilla
-
-    elif flavor == "chocolate":
-        price_total += Chocolate  
-    break
-     
-    
-    topping_choice = input("Would you like to add a topping for $1,000 COP? (yes/no): ").strip().lower()
-
-    if topping_choice == "yes":
-        price_total += Topping
-    elif topping_choice == "no":
-        price_total = price_total
+    if not choice_flavor in ["chocolate","vanilla"] or choice_flavor.isdigit():
+        print("Select a available flavor")
+        continue
+   
+    elif choice_flavor == "chocolate":
+        while True:
+            yes_topping = input("Would you like to add a topping? (yes/not): ")
+            if not yes_topping in ["yes","not"] or choice_flavor.isdigit():
+                print("You can only choice yes/not") 
+                continue        
+            else:
+                if yes_topping == "yes":
+                    total_price = Chocolate + Topping
+                    break
+                elif yes_topping == "not":
+                    total_price = Chocolate 
+                    break
+        
+    elif choice_flavor == "vanilla":
+        while True:
+            yes_topping = input("Would you like to add a topping? (yes/not): ")
+            if not yes_topping in ["yes","not"] or choice_flavor.isdigit():
+                print("You can only choice yes/not")  
+                continue        
+            else:
+                if yes_topping == "yes":
+                    total_price = Vanilla + Topping
+                    break
+                elif yes_topping == "not":
+                    total_price = Vanilla
+                    break
     break
     
    
-print(f"Your total price is: ${price_total} COP")
+print(f"Your total price is: ${total_price} COP")
